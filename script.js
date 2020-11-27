@@ -1,16 +1,22 @@
+let apiQuotes = []
+
+function newQuote() {
+    const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]
+    console.log(quote)
+}
+
 // Get quote from API
-async function GetQuote() {
-    const proxy = 'https://cors-anywhere.herokuapp.com/'
-    const api = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json'
+async function GetQuotes() {
+    const api = 'https://type.fit/api/quotes'
     try {
-        const respone = await fetch(proxy + api)
-        const data = await respone.json() 
-        console.log(data)
+        const respone = await fetch(api)
+        apiQuotes = await respone.json() 
+        newQuote()
     } catch(error) {
-        GetQuote()
+        GetQuotes()
         console.log(error)
     }
 }
 
 // On Load
-GetQuote()
+GetQuotes()
