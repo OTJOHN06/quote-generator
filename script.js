@@ -8,7 +8,14 @@ let apiQuotes = []
 
 function newQuote() {
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)]
+    if (quote.text.length > 50) {
+        quoteText.classList.add('long-quote')
+    } else {
+        quoteText.classList.remove('long-quote')
+    }
+    
     quoteText.textContent = quote.text
+    
     if (quote.author === null) {
         authorText.textContent = 'Unknown'
     } else {
@@ -28,6 +35,16 @@ async function GetQuotes() {
         console.log(error)
     }
 }
+
+function tweetQuote() {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`
+    window.open(twitterUrl, '_blank')
+}
+
+newQuoteButton.addEventListener('click', newQuote)
+
+twitterButton.addEventListener('click', tweetQuote)
+
 
 // On Load
 GetQuotes()
