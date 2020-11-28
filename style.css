@@ -20,7 +20,7 @@ span {
 
 .quote-container {
     width: auto;
-    max-width: 900;
+    max-width: 70%;
     padding: 20px 30px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.4);
